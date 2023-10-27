@@ -1,0 +1,7 @@
+{
+  "name": "PWATrigo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

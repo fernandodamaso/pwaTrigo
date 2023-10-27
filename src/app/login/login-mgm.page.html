@@ -1,0 +1,93 @@
+  <ion-content>
+    <section class="faixaInicial">
+      <div class="layout">
+        <div class="textoWrap">
+          <div class="center">
+            <h1>Programa de Indicação Mio Spoleto</h1>
+            <p *ngIf="cliente$ | async as user"><strong>{{ user.nome_completo }}</strong><br> te ajudou a economizar!</p>
+            <p *ngIf="!cliente$"><strong>Erro ao procurar seu indicado.</strong><br> para o MIO Spoleto!</p>
+            <p><span>Cadastre-se e ganhe um cupom de R$ 5,00 na sua primeira compra. <br> É rapidinho!</span></p>
+            <a (click)="moverJanela()" class="saibaMais">
+              <img src="../assets/landing/seta.png" alt="" />
+              Saiba Mais
+              <img src="../assets/landing/seta.png" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="loginWrap">
+          <app-popup-login-b [rotaMgM]="true"  redirect_url="/" [register_func]="cadastromgm" logo_url="https://www.gcom.com.br/ImagesAppGcom/5/logo-fidelidade.png" style="width: 100%">
+          </app-popup-login-b>
+        </div>
+      </div>
+    </section>
+    <section class="passos" id="etapas">
+      <div class="layout">
+        <h2>Pra ganhar, é muito <br /> simples!</h2>
+        <div class="etapas">
+          <div class="etapa">
+            <img title="Spoleto" src="../assets/landing/maos.png" />
+            <div class="texto"><p>Faça seu cadastro <br> no campo acima.</p></div>
+          </div>
+          <div class="etapa">
+            <img title="Spoleto" src="../assets/landing/Cupom.png" />
+            <div class="texto">
+             
+              <p><span>O desconto de  R$P 5,00</span> já está disponível no campo de cupons!
+              </p>
+            </div>
+          </div>
+  
+          <div class="etapa">
+            <img title="Spoleto" src="../assets/landing/restaurante.png" />
+            <div class="texto">
+              <p>
+                Agora, é só correr pro<span> Spoleto </span>mais próximo ou acessar<span> spoleto.com.br </span>para pedir nosso delivery e aproveitar o seu desconto! Fácil, né? 
+              </p>
+            </div>
+          </div>
+          <div class="etapa">
+            <img src="../assets/landing/palmas.png" alt="" />
+            <div class="texto">
+              <p>Aqui, todo mundo ganha! Depois que você realizar a compra, <span> a pessoa que te indicou vai ganhar R$ 5,00 </span>direto na carteira virtual no Mio Spoleto!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="regras">
+      <div class="layout">
+      
+  
+        <div class="wrap">
+          <div class="texto">
+            <p><span> Informações importantes:</span></p>
+            <ul>
+              <li>O valor mínimo da compra deve ser de R$ 30,00.</li>
+              <li>O cupom só é válido para novos clientes cadastrados no Mio Spoleto, nosso programa Fidelidade, e deve ser aplicado na primeira compra.</li>
+              <li>O cadastro deve ser realizado a partir do link enviado pela pessoa que indicou para o benefício ser válido.</li>
+              
+              <li>
+                Para usar o cupom no restaurante, 
+                basta informar o telefone cadastrado no ato da compra ao atendente e solicitar a utilização do benefício. Em caso de restaurantes com totem digital,
+                 basta inserir o telefone cadastrado no início da compra e selecionar o benefício no campo de cupons. 
+              </li>
+              <li>
+                O cupom é válido somente nos canais oficiais de compra do Spoleto, que são: 
+                <ul>
+                  <li>site spoleto.com.br</li>
+                  <li>restaurantes Spoleto</li>
+                </ul>
+              </li>
+              <li>Não é válido em aplicativos de delivery.</li>
+              <li>O cupom será disponibilizado na conta cadastrada em até 72 horas. </li>
+              <li>O cupom é válido por 30 dias a partir do dia em que for disponibilizado na conta. </li>
+              <li>Cupom não cumulativo com outras promoções. </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ion-content>
+  
+
+  

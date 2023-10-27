@@ -1,0 +1,190 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 32px 0 32px;
+    font: normal normal lighter 14px/19px Manrope;
+    color: rgba($color: #000000, $alpha: 0.54);
+}
+
+input {
+    padding-left: 6px;
+}
+
+.container > * {
+    width: 100%;
+    max-width: 450px;
+}
+
+.logo {
+    max-width:256px !important;
+    width: auto;
+    display: block;
+}
+
+h1{
+    font: normal normal bold 20px/27px Manrope;
+    padding: 0;
+    margin: 0;
+    color: #000000;
+}
+
+p {
+    font-size: 16px/22px;
+    padding-top: 8px;
+    margin: 0;
+}
+
+.login-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.email{
+
+    padding-bottom: 16px;
+
+    ion-input{
+        border: 1px solid #DEDEDE;
+        border-radius: 5px;
+    }
+
+    ion-label:last-of-type {
+        color: tomato;
+    }
+}
+
+.progress{
+    padding: 0 0 16px 0;
+
+    ion-progress-bar{
+        --buffer-background : var(--ion-color-primary);
+        --progress-background : var(--ion-color-secondary-shade)
+    }
+}
+
+.password {
+    padding-bottom: 24px;
+
+    ion-input{
+        border: 1px solid #DEDEDE;
+        border-radius: 5px;
+    }
+}
+
+.pass-recover-link{
+    display: flex;
+    justify-content: center;
+
+    .recover-password {
+        font: normal normal bold 14px/19px Manrope;
+        text-align: center;
+        padding-bottom: 16px;
+        text-decoration: underline;
+        color: #000000;
+    }
+}
+
+ion-buttom .btn-continue {
+    height: 50px;
+    margin-bottom: 24px;
+}
+
+.custom-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .line{
+        width: 100%;
+        border: none;
+        border-top: 0.7px solid;
+        position: absolute;
+        border-color: rgba($color: #000000, $alpha: 0.25);
+    }
+    .text{
+        background-color: #fff;
+        position: relative;
+        padding: 0.5rem;
+    }   
+}
+
+.btn-apple,
+.btn-google{
+    --background: #EDEDED;
+    color: rgba($color: #000000, $alpha: 0.54);
+    --box-shadow: none;
+    --height: 50px;
+    height: 50px;
+    margin: 8px;
+    text-transform: none;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    ion-icon{
+        padding: 4px;
+    }
+
+}
+
+ion-button{
+    --height: 50px;
+    height: 50px;
+    margin: 8px;
+    text-transform: none;
+
+    ion-icon{
+        padding: 4px;
+    }
+}
+
+.email ion-input,
+.password ion-input,
+.progress ion-progress-bar{
+    transition: all 0.33s ease-in-out;
+}
+
+ion-input{
+    --padding-start: 6px;
+}
+
+.logoimg {
+    max-width:250px;
+    width: auto; 
+    margin: auto; 
+    display: block; 
+    padding-top: 50px; 
+    padding-bottom: 50px;
+}
+
+.logoimg-roomservice {
+    max-width:150px;
+    width: auto; 
+    margin: auto; 
+    display: block; 
+    padding-top: 15px; 
+    padding-bottom: 5px;
+}
+
+.logoimg-reidomate {
+    max-width:220px;
+    width: auto; 
+    margin: auto; 
+    display: block; 
+    padding-top: 15px; 
+    padding-bottom: 5px;
+}
+
+.logoimg-gokoni {
+    max-width:170px;
+    width: auto; 
+    margin: auto; 
+    display: block; 
+    padding-top: 0px; 
+    padding-bottom: 0px;
+}

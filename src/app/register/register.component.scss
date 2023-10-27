@@ -1,0 +1,93 @@
+ion-input{
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    font-weight: 400;
+    --padding-start: 6px;
+}
+
+ion-title{
+    padding: 0 !important;
+    padding-right: 54px !important;
+}
+
+ion-content{
+    --padding-top: 16px !important;
+}
+
+h2{
+    text-align: center;
+    padding: 12px;
+}
+
+.password-input {
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    ion-input {
+        border: none
+    }
+}
+
+input{
+    padding-left: 6px;
+}
+
+ion-title{
+    padding: 24px;
+    text-align: center;
+}
+
+.line{
+    font: normal normal lighter 14px/19px Manrope;
+    color: rgba($color: #000000, $alpha: 0.74);
+    padding: 8px 32px;
+    display: flex;
+    justify-content: space-between;
+
+    ion-input{
+        width: 244px;
+    }
+}
+
+@media only screen and (max-width: 1023px)  {
+    .line{
+        flex-direction: column;
+        padding: 0 32px;
+
+        div{
+            --padding: 8px 0;
+            padding: 8px 0;
+            
+
+            ion-input{
+                width: unset;
+            }
+        }
+    }
+}
+
+
+
+.line-single-item{
+    font: normal normal lighter 14px/19px Manrope;
+    color: rgba($color: #000000, $alpha: 0.74);
+    padding: 8px 32px;
+}
+
+
+.checks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+
+    ion-checkbox{
+        margin-right: 8px;
+    }
+
+    ion-label{
+        flex: 1
+    }
+}

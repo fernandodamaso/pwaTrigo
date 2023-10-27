@@ -1,0 +1,32 @@
+export const environment = {
+  production: true,
+  urlConvite: 'https://gcom-mgm-convite-api-br.azurewebsites.net/',
+  urlMGMConfiguracao :  'https://gcom-mgm-convite-api-br.azurewebsites.net/',
+  url: "https://avaliacoes-br.azurewebsites.net/",
+  urlAvalicaoSql: 'https://avaliacoes-br-sql.azurewebsites.net/',
+  urlPedido: "https://gcom-pwa-pedido-api-br.azurewebsites.net/",
+  urlLoja: "https://gcom-pwa-loja-api-br.azurewebsites.net/",
+  urlCarrinho: 'https://gcom-pwa-carrinho-api-br.azurewebsites.net/',
+  urlCupom: '',
+  urlMensagem: '',
+  urlPagamento: 'https://gcom-pwa-pagamento-api-br.azurewebsites.net/',
+  urlPublicacao: 'https://gcom-pwa-config-br.azurewebsites.net/',
+  urlCardapio: 'https://gcom-pwa-cardapio-api-br.azurewebsites.net/',
+  urlCliente: 'https://gcom-pwa-cliente-api-br.azurewebsites.net/',
+  urlComunicacao: 'https://wpcomunic-translate.azurewebsites.net/',
+  urlGeo: 'https://gcom-pwa-geo-api-br.azurewebsites.net/',
+  urlGcomWsRest: 'https://www.gcom.com.br/WsRestAppGcom/',
+  urlAPIGateway: 'https://gcom-pwa-gateway-br.azurewebsites.net',
+  urlSecurity: 'https://gcom-pwa-security-br.azurewebsites.net',
+  urlFrontMGM: 'https://pwafronthomolog.azurewebsites.net/',
+  urlBenefits: 'https://gcom-pwa-benefits-api-br.azurewebsites.net/',
+  firebase: {
+    apiKey: "AIzaSyB1b9jl0I6KjwXdCQF4rYW5EBJLj7_FDwo",
+    authDomain: "spoleto-auth.firebaseapp.com",
+    projectId: "spoleto-auth",
+    storageBucket: "spoleto-auth.appspot.com",
+    messagingSenderId: "72983921657",
+    appId: "1:72983921657:web:daf50fdaf8ba865b57f328"
+  },
+  encript_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsegJWbsRMdqc2fAogRK0 x7PsDZ3fz/eg4zOYShIHSEUbgnI1a41WBmH19oNUbKrAJHloZQEX8PwqvPAqpgsj CT2cxw2eD8peGOyig+kbEw2PI74XMNHnapNnoQRuBBLFvFfdMgV5Ol1McPUYX6rx 3cRn6cqUKTfd1U44WN+Ep6L3JXy+hl8WBmJ+3+ZRqXXZMxETuH1NMcNv/6CaKUe7 X9sT0spaEXlRzX7Hze6GtRnZwxogxASGo8o8+Et+FlZloAYLnVGGBWMj8pcQYp3v S2fAo6NkVR9OoybXx0gflZyNkJEGJsVGqoHpYKWJITeP6BsTGAWX1x4twErRNjaf ywIDAQAB"
+};

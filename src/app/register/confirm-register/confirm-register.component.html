@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="#ffffff">
+    <ion-buttons slot="start">
+      <ion-button size="large" fill="clear" (click)="dismiss('closed')"><ion-icon size="large"
+          name="close"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Confirmar cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="contentBody">
+
+  <div *ngIf="!codigo_origem" style="padding: 0 32px;">
+    <p class="detailContent">Selecione uma opção para realizar a confirmação:</p>
+    <div class="buttonsEnabled">
+      <ion-button  style="height: 50px" expand="block" type="submit" *ngIf="buttonsEnabled.EMAIL"
+      (click)="selectButton('EMAIL')">Email</ion-button>
+      <ion-button style="height: 50px" expand="block" type="submit" *ngIf="buttonsEnabled.SMS"
+      (click)="selectButton('SMS')" >SMS</ion-button>
+    </div>
+  </div>
+
+  <div *ngIf="codigo_origem">
+    <div class="codeContent">
+      <p style="font-weight: 500 !important;">Enviamos um código de confirmação para o seu {{codigo_origem ==="EMAIL"? "Email" : "Telefone"}}.</p>
+      <p *ngIf="codigo_origem ==='EMAIL'">Confira sua caixa de entrada e a pasta de spam.</p>
+      <ion-input type="text" oninput="this.value = this.value.toUpperCase()" [(ngModel)]="codigo_confirmacao" style="width:200px; margin:auto;" placeholder="AAA123" maxlength="6" max="5"></ion-input>
+    </div>
+    <div class="codeAction">
+      <ion-button style="height: 50px" expand="block" type="submit"
+      (click)="verifyCode()" >Continuar</ion-button>
+      <p style="text-align: center;" (click)="reSendCode()">Não recebeu o código ? Clique aqui para solicitar novamente.</p>
+    </div>
+    
+  </div>
+  
+  
+</div>
+
+ 

@@ -1,0 +1,51 @@
+ion-input {
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    font-weight: 400;
+    --padding-start: 6px;
+}
+
+ion-title {
+    padding: 0 !important;
+    padding-right: 54px !important;
+}
+
+.contentBody {
+    height: 100%;
+    margin-top: 20px;
+    position: relative;
+    p{
+        color: #000000;
+        font-size: 14px;
+        font-weight: 100;
+    }
+    .buttonsEnabled{
+        margin:auto;
+    }
+    .codeContent{
+        text-align: center;
+        margin-bottom: 10px;
+        
+    }
+    .codeAction{
+        padding: 0 32px;
+        position: absolute;
+        width: 100%;
+        bottom: 20px;
+        p{
+            cursor: pointer;
+        }
+    }
+}
+
+h2 {
+    text-align: center;
+    padding: 12px;
+}
+
+
+ion-title {
+    padding: 24px;
+    text-align: center;
+}
+

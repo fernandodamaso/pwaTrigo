@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar color="#ffffff">
+    <ion-buttons slot="start">
+      <ion-button size="large" fill="clear" (click)="dismiss('closed')"><ion-icon size="large"
+          name="close"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="id_cliente == null">Registro</ion-title>
+    <ion-title *ngIf="id_cliente != null">Editar Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="line-single-item">
+    <div>
+      <ion-label position="stacked">E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email" [readonly]="false" id="email" (ionChange)="onCleanEmail()"
+        (keypress)="$event.preventDefault()" (keydown)="$event.preventDefault()" [disabled]="id_cliente"
+        [clearInput]="true"></ion-input>
+    </div>
+  </div>
+
+
+  <div class="line">
+
+    <div>
+      <ion-label position="stacked">Nome:</ion-label>
+      <ion-input type="text" [(ngModel)]="firstname"></ion-input>
+    </div>
+
+    <div>
+      <ion-label position="stacked">Sobrenome:</ion-label>
+      <ion-input type="text" [(ngModel)]="lastname"></ion-input>
+    </div>
+
+  </div>
+
+  <div class="line-single-item">
+    <div>
+      <ion-label position="stacked">CPF</ion-label>
+      <ion-input type="text" [(ngModel)]="CPFCPNJ" (ionBlur)="CPFCPNJ = format(CPFCPNJ)" maxlength="14"
+        (keypress)="soNumero($event)" (keydown)="onKeyDownCPF($event)"
+        [readonly]="id_cliente != null && isCPFCPNJInformed"></ion-input>
+    </div>
+
+    <!-- <div>
+    <ion-label position="stacked" >Confirme seu celular</ion-label>
+    <ion-input type="tel" placeholder="55 55555-5555" [(ngModel)]="celular2" (ionBlur)="verifyphone(celular2, 2)" (ionChange)="formatphone(2)" (keypress)="soNumero($event)" maxlength="15"></ion-input>
+  </div> -->
+
+  </div>
+
+  <div class="line">
+
+    <div>
+      <ion-label position="stacked">Celular</ion-label>
+      <ion-input type="tel" placeholder="55 55555-5555" [(ngModel)]="celular" (ionBlur)="verifyphone(celular, 1)"
+        (ionChange)="formatphone(1)" (keypress)="soNumero($event)" maxlength="15"></ion-input>
+    </div>
+
+    <div>
+      <ion-label position="stacked">Data de Nascimento</ion-label>
+      <ion-input autocomplete="false" autocorrect="off" autocapitalize="off" spellcheck="false"
+        [(ngModel)]="datanascimento" (focusout)="onFocusOut($event)" (keypress)="keyPressNumbers($event)"
+        (keydown)="onKeyDown($event)" (paste)="bloquearColar($event)" type="text" name="date" placeholder="dd/mm/aaaa" id="data_nascimento"
+        maxlength="10">
+      </ion-input>
+    </div>
+
+  </div>
+
+  <div class="line-single-item" *ngIf="!(google_id || apple_id || facebook_id) && ((id_cliente == null) || optin)">
+    <div>
+      <ion-label position="stacked">Senha</ion-label>
+
+      <div class="password-input">
+
+        <ion-input [type]="typeInputPass" [(ngModel)]="senha">
+        </ion-input>
+
+        <ion-icon slot="end" (click)="switchVisibilityPass()"
+          [name]="typeInputPass == 'password' ? 'eye-outline' : 'eye-off-outline'" role="img" class="md hydrated"
+          style=" order: 2; padding: 3px; width: 24px; height: 24px; z-index: 1000">
+        </ion-icon>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="line-single-item" *ngIf="id_cliente == null || optin">
+    <div class="checks">
+
+      <ion-checkbox slot="start" [(ngModel)]="termsAgreed"></ion-checkbox>
+
+      <ion-label class="ion-text-wrap" *ngIf="!haveTermsCookiesAndPrivacyPolicy">
+        Eu li e concordo com os <u><b><a (click)="openUseTerms()" style="cursor: pointer;">Termos de Uso e </a> <a
+              (click)="openPrivacyTerms()" style="cursor: pointer;">Políticas de Privacidade.</a></b></u>
+      </ion-label>
+
+      <ion-label class="ion-text-wrap" *ngIf="haveTermsCookiesAndPrivacyPolicy">
+        Eu li e concordo com os <u><b><a (click)="openUseTermsCookiesPrivacyPolicy()" style="cursor: pointer;">Termos de
+              Uso, Política de cookies e Política de privacidade </a></b></u>
+      </ion-label>
+
+    </div>
+  </div>
+
+  <div class="line-single-item">
+    <div class="checks">
+
+      <ion-checkbox slot="start" [(ngModel)]="aceitaEmail"></ion-checkbox>
+      <ion-label>{{optInEmail}}</ion-label>
+    </div>
+  </div>
+
+  <div class="line-single-item">
+    <div class="checks">
+
+      <ion-checkbox slot="start" [(ngModel)]="aceitaSms"></ion-checkbox>
+      <ion-label>{{optInSms}}</ion-label>
+    </div>
+  </div>
+
+  <div class="line-single-item">
+    <!-- <ion-button *ngIf="id_cliente == null && !processingRegister" style="height: 50px" expand="block" type="submit"
+      class="ion-no-margin" (click)="checkoptin()">Continuar</ion-button> -->
+       <ion-button *ngIf="id_cliente == null && !processingRegister" style="height: 50px" expand="block" type="submit"
+      class="ion-no-margin" (click)="checkoptin()">Continuar</ion-button>
+    <ion-button *ngIf="id_cliente != null" style="height: 50px" expand="block" type="submit" class="ion-no-margin"
+      (click)="checkoptin()">Salvar Alterações</ion-button>
+    <ion-button expand="block" style="height: 50px" color="success" class="ion-no-margin"
+      *ngIf="processingRegister"><ion-spinner name="dots"></ion-spinner></ion-button>
+  </div>
+</ion-content>

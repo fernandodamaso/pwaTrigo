@@ -1,0 +1,205 @@
+<ion-content>
+
+   <!-- BOTAFOGO PRAIA SHOPPING -->
+   <!-- <ion-img *ngIf="shoppingId==2" class="logoimg" src="https://www.gcom.com.br/ImagesAppGcom/logo-botafogo-praia-shopping.png"></ion-img> -->
+   <ion-img *ngIf="shoppingId==2" class="logoimg" src="https://www.gcom.com.br/ImagesAppGcom/logo-villa-romana.png"></ion-img>
+
+   <!-- SPOLETO -->
+    <ion-img *ngIf="brandId==5" class="logoimg" src="https://www.gcom.com.br/ImagesAppGcom/logo-spoleto.png"></ion-img>
+
+<<<<<<< HEAD
+    <div class="email">
+      <ion-label *ngIf="!login_data?.email" position="stacked">E-mail</ion-label>
+      <ion-input type="email" (keyup)="emailEnter($event)"  (keyup.enter)="requestPassOrRegister()"
+        (ionFocus)="emailValidation=''; login_data.email=null; passwordIsRequested=false" [(ngModel)]="tempEmail" clear-input="true"
+        [ngClass]="login_data.email?'show-clear-email':''"></ion-input>
+        <datalist id="suggestions" #suggestions>
+          <option *ngFor="let item of emailSuggestionsList" [value]="item">{{item}}</option>
+        </datalist>
+      <ion-label>{{emailValidation}}</ion-label>
+    </div>
+=======
+    <!-- FRANS CAFE -->
+    <ion-img *ngIf="brandId==28" class="logoimg" src="https://www.gcom.com.br/ImagesAppGcom/logo-frans.png"></ion-img>
+>>>>>>> main
+
+    <!-- VIVENDA DO CAMARAO -->
+    <ion-img *ngIf="brandId==7" class="logoimg" src="https://www.gcom.com.br/ImagesAppGcom/logo-vivenda.png"></ion-img>
+
+    <!-- BLEM -->
+    <ion-img *ngIf="brandId==36" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-blem.png"></ion-img>
+
+<<<<<<< HEAD
+    <div *ngIf="!loadInProgress" class="pass-recover-link">
+      <span class="recover-password" (click)="openModalForgotPassword()">esqueci minha senha</span>
+    </div>
+=======
+    <!-- ROOM SERVICE -->
+    <ion-img *ngIf="brandId==66" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-roomservice-login.png"></ion-img>
+>>>>>>> main
+
+    <!-- VÓ ALZIRA -->
+    <ion-img *ngIf="brandId==21" class="logoimg" src="https://www.gcom.com.br/ImagesAppGcom/logo-voalzira.png"></ion-img>
+
+    <!-- REI DO MATE -->
+    <ion-img *ngIf="brandId==17" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-reidomate.png"></ion-img>
+
+    <!-- SAN PAOLO -->
+    <ion-img *ngIf="brandId==161" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-sanpaolo.png"></ion-img>
+
+    <!-- GOKONI -->
+    <ion-img *ngIf="brandId==3" class="logoimg-gokoni" src="https://www.gcom.com.br/ImagesAppGcom/logo-gokoni-login.png"></ion-img>
+
+    <!-- KONI -->
+    <ion-img *ngIf="brandId==13" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-koni.png"></ion-img>
+
+    <!-- GRILETTO -->
+    <ion-img *ngIf="brandId==81" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-griletto-login.png"></ion-img>
+
+    <!-- JIN JIN -->
+    <ion-img *ngIf="brandId==83" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-jinjin-login.png"></ion-img>
+
+    <!-- SUBWAY -->
+    <ion-img *ngIf="brandId==85" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-subway.png"></ion-img>
+
+    <!-- BILLY THE GRILL -->
+    <ion-img *ngIf="brandId==89" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-billythegrill-login.png"></ion-img>
+
+    <!-- STROGONOSSO -->
+    <ion-img *ngIf="brandId==73" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-strogonosso-login.png"></ion-img>
+
+    <!-- AMPM -->
+    <ion-img *ngIf="brandId==90" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-ampm-login.png"></ion-img>
+
+<<<<<<< HEAD
+    <button *ngIf="!login_data.email" (click)="googleSignin()" class="btn-google">
+      <ion-icon src="assets/google.svg"></ion-icon>Google
+    </button>
+
+    <!-- <button *ngIf="!login_data.email" (click)="appleSignin()" class="btn-apple">
+      <ion-icon name="logo-apple" color="#000000"></ion-icon> Apple
+    </button> -->
+
+    <ion-button *ngIf="login_data.email" (click)="fastAccessByEmailRequest()"  fill="outline" class="btn-fast-access-email">
+      <ion-icon name="lock-closed-outline"></ion-icon> Acesso rápido por e-mail
+    </ion-button>
+=======
+    <!-- CASA BAUDUCCO -->
+    <ion-img *ngIf="brandId==92" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-casabauducco-login.png"></ion-img>
+
+    <!-- LEBONTON -->
+    <ion-img *ngIf="brandId==29" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-lebonton-2.png"></ion-img>
+
+    <!-- CROASONHO -->
+    <ion-img *ngIf="brandId==93" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-croasonho-login.png"></ion-img>
+    
+    <!-- NEMA -->
+    <ion-img *ngIf="brandId==95" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-nema.png"></ion-img>
+>>>>>>> main
+
+    <!-- DELIVERY MENU -->
+    <ion-img *ngIf="brandId==101" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-deliverymenu.png"></ion-img>
+
+    <!-- RISIE -->
+    <ion-img *ngIf="brandId==72" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-risie.png"></ion-img>
+
+    <!-- CHINA IN BOX -->
+    <ion-img *ngIf="brandId==120" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-chinainbox.png"></ion-img>
+
+    <!-- CUT THE CRAP -->
+    <ion-img *ngIf="brandId==99" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-cutthecrap.png"></ion-img>
+
+    <!-- BR MANIA -->
+    <ion-img *ngIf="brandId==121" class="logoimg-reidomate" style="margin-top:20px;" src="https://www.gcom.com.br/ImagesAppGcom/logo-brmania.png"></ion-img>
+
+    <!-- LARCO -->
+    <ion-img *ngIf="brandId==122" class="logoimg-reidomate" style="margin-top:20px;" src="https://www.gcom.com.br/ImagesAppGcom/logo-larco.png"></ion-img>
+    
+    <!-- BULLGUER -->
+    <ion-img *ngIf="brandId==123" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-bullguer.png"></ion-img>
+    
+    <!-- GIUSTO -->
+    <ion-img *ngIf="brandId==62" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-giusto-2.png"></ion-img>
+
+    <!-- MANIA DO CHURRASCO -->
+    <!-- <ion-img *ngIf="brandId==43" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-maniadochurrasco.png"></ion-img> -->
+    <ion-img *ngIf="brandId==43" class="logoimg-roomservice" src="https://www.gcom.com.br/ImagesAppGcom/logo-restaurante.jpeg"></ion-img>
+
+    <!-- SEGREDO DOS GRAOS -->
+    <ion-img *ngIf="brandId==117" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-segredodosgraos.png"></ion-img>
+
+    <!-- PAPRICA BURGUER -->
+    <ion-img *ngIf="brandId==87" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-papricaburguer.png"></ion-img>
+
+    <!-- SEU RISOTO -->
+    <ion-img *ngIf="brandId==107" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-seurisoto.png"></ion-img>
+    
+    <!-- QUALICOOK -->
+    <ion-img *ngIf="brandId==148" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-qualicook-v2.png"></ion-img>
+    
+    <!-- GURUME -->
+    <ion-img *ngIf="brandId==47" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-gurume.png"></ion-img>
+    
+    <!-- THAIBREAK -->
+    <ion-img *ngIf="brandId==146" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-thaibreak.png"></ion-img>
+
+    <!-- FRESHCO -->
+    <ion-img *ngIf="brandId==150" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-freshco.png"></ion-img>
+    
+    <!-- TEXAS WEST -->
+    <ion-img *ngIf="brandId==162" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-texaswest.png"></ion-img>
+
+    <!-- GUACO -->
+    <ion-img *ngIf="brandId==145" class="logoimg-reidomate" src="https://www.gcom.com.br/ImagesAppGcom/logo-guaco.png"></ion-img>
+
+    <ion-list lines="full" style="max-width: 800px; margin: auto;">
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">
+            <b>Login</b>
+        </ion-label>
+      </ion-item>
+      <!-- <div class="ion-padding" *ngIf="brandId != 148 && brandId != 146">
+        <ion-button expand="block" onclick="facebookLogin()" style="height: 50px; --background: #3b5998;" *ngIf="facebookLoginEnabled"><ion-icon name="logo-facebook" style="margin-right: 5px;"></ion-icon>Entrar com o Facebook</ion-button>
+        <ion-button expand="block" (click)="facebookNotEnabled()" style="height: 50px; --background: #3b5998;" *ngIf="!facebookLoginEnabled"><ion-icon name="logo-facebook" style="margin-right: 5px;"></ion-icon>Entrar com o Facebook</ion-button>
+      </div>
+      <ion-item *ngIf="brandId != 148 && brandId != 146">
+        <ion-label color="primary" class="ion-text-center"><b>OU</b></ion-label>
+      </ion-item> -->
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+            Informe seu e-mail e senha para iniciar seu pedido.
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">E-mail:</ion-label>
+        <ion-input required type="email" placeholder="" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input required [type]="(showPassword ? 'text' : 'password')" placeholder="" [(ngModel)]="password" (keypress)="passwordKeypress($event)"></ion-input>
+        <ion-icon slot="end" [name]="(showPassword ? 'eye' : 'eye-off')" size="large" color="primary" style="position: relative; top: 10px;" (click)="passwordShowHide()"></ion-icon>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button style="height: 50px" expand="block" type="submit" class="ion-no-margin" (click)="login(false)">Entrar</ion-button>
+      <!-- <hr>
+      <ion-button (click)="googleSignin()" style="height: 50px" expand="block">
+       <ion-icon name="logo-google"></ion-icon>
+       Entrar com Google
+     </ion-button>
+     <ion-button (click)="appleSignin()" style="height: 50px" expand="block">
+       <ion-icon name="logo-apple"></ion-icon>
+       Entrar com Apple
+   </ion-button> -->
+    </div>
+    <div class="ion-padding-horizontal" *ngIf="brandId == 146 || brandId == 148">
+      <ion-button style="height: 50px" expand="block" class="ion-no-margin" (click)="register()">Cadastrar-se</ion-button>
+      <ion-label style="padding: 0.25rem; font-size: 15px; font-weight: bold;text-align: center;" class="ion-text-wrap ion-text-center" (click)="register()">Não tem uma conta? Não tem problema! Crie sua conta rapidamente para finalizar seu pedido.</ion-label>
+    </div>
+    <ion-item button lines="none" style="max-width: 800px; margin: auto;">
+      <ion-label class="ion-text-wrap ion-text-center" (click)="forgotPassword()"><u><b style="color: var(--ion-color-primary)">Esqueci minha senha</b></u></ion-label>
+    </ion-item>
+    <ion-item button lines="none" style="max-width: 800px; margin: auto;" *ngIf="brandId != 146 && brandId != 148">
+      <ion-label class="ion-text-wrap ion-text-center" (click)="register()">Primeira vez aqui? <u><b style="color: var(--ion-color-primary)" >Clique aqui para se cadastrar.</b></u></ion-label>
+    </ion-item>
+</ion-content>

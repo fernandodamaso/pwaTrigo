@@ -1,0 +1,102 @@
+<ion-header>
+  <div class="layout">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-button size="large" fill="clear" (click)="dismiss()"><ion-icon size="large" name="close"></ion-icon></ion-button>
+      </ion-buttons>
+      <ion-title>Indique um amigo e ganhe!</ion-title>
+    </ion-toolbar>
+    <div lines="none" class="menu">
+      <ion-button fill="clear" [ngClass]="{ ativo: activeTab === 'indique' }" (click)="setActiveTab('indique')">Indique</ion-button>
+      <ion-button fill="clear" [ngClass]="{ ativo: activeTab === 'acompanhe', temCupom: alertaCupomGerado === true }" (click)="setActiveTab('acompanhe')">Acompanhe</ion-button>
+    </div>
+  </div>
+</ion-header>
+
+<div class="alertaCupom" *ngIf="alertaCupomGerado" [ngClass]="{ ativo: abreCupom }">
+  <div class="layout">
+    <p class="data">{{ data_cadastro | date: 'dd/MM/yyyy'}} - Benefício gerado</p>
+    <p class="simples">{{ nome_ultimo_indicado_beneficio_ativo }} fez a primeira compra depois da sua indicação! Como recompensa, você ganhou R$ 5,00 de saldo na sua carteira virtual!</p>
+    <ion-button size="small" fill="clear" (click)="dismissAlert()">
+      <ion-icon size="small" name="close"></ion-icon>
+    </ion-button>
+  </div>
+</div>
+
+<ion-content *ngIf="activeTab == 'indique'">
+  <div class="layout">
+    <div class="imagem">
+      <img alt="Spoleto" src="../assets/conviteSpoletoDesktop.png" class="Desktop" />
+      <img alt="Spoleto" src="../assets/conviteSpoletoMobile.png" class="Mobile" />
+    </div>
+    <div class="passos">
+      <div class="layout">
+        <div class="bloco">
+          <img src="../assets/passoConvite1.png" alt="" class="icone" />
+          <p>Convide um amigo!</p>
+        </div>
+        <div class="bloco">
+          <img src="../assets/passoConvite2.png" alt="" class="icone" />
+          <p>Seu amigo ganha!</p>
+        </div>
+        <div class="bloco">
+          <img src="../assets/passoConvite3.png" alt="" class="icone" />
+          <p>Ganhe você também!</p>
+        </div>
+      </div>
+    </div>
+    <div class="topo">
+      <div class="layout">
+          <!--<p>Ei! Bora comer no Spoleto pagando menos?</p>
+        <p>Se cadastra rapidinho que você vai ganhar um cupom de <b>R$ 5,00</b>para a sua primeira compra! Depois que você usar, eu ganho<b>R$ 5,00</b> de volta também! Amigo ajuda amigo, né? </p>-->
+         <p>Tire um amigo do perrengue!</p>
+        <p>Indicando seus amigos ao Mio Spoleto, nosso clube de Fidelidade, eles ganham um cupom de <b>R$ 5,00</b> para usar na primeira compra assim que se cadastrarem!</p>
+        <p>Depois que eles usarem o cupom, você também ganha de volta <b>R$ 5,00</b> de saldo direto na sua carteira virtual do Mio Spoleto! Maneiro, né?</p>
+        <div  class="textarea" (click)="copyElementText('linkcopiar')">
+          <img *ngIf="link" alt="Copiar mensagem" src="../assets/copy.png" />
+
+          <p>{{ mensagemCupom }}</p>
+
+          <p  id="linkcopiar" class="underline">{{ link }}</p>
+
+          <div class="alertaCupomGerado" [ngClass]="{ ativo: alertaCupomGeradoBalao }">
+            <p>Código Copiado! Agora é só mandar para seus amigos</p>
+          </div>
+        </div>
+      </div>
+      <div class="botoes">
+        <div class="layout">
+          <a [attr.href]="sanitize(whatsapp)" class="botao whatsapp" id="whatsapp" target="_blank"><img src="../assets/whatsConvite.png" alt="Compartilhar no WhatsApp" /> Compartilhar no WhatsApp</a>
+          <a [attr.href]="sanitize(telegram)" class="botao telegram" id="telegram" target="_blank"
+            ><img src="../assets/telegramConvite.png" alt="Compartilhar no Telegram" /> Compartilhar no Telegram</a
+          >
+        </div>
+      </div>
+      <!-- <div class="duvidas">
+        <div class="layout">
+          <p>Ainda na dúvida de como funciona?</p>
+          <a href="">Vem com a gente.</a>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</ion-content>
+<ion-content class="cards" *ngIf="activeTab == 'acompanhe'">
+  <div class="layout">
+    <div
+      *ngFor="let indicado of indicados "
+      [ngClass]="{ aguardando: !indicado.beneficio_ativo, aceito: indicado.beneficio_ativo, Usado: indicado.beneficio_ativo === null }"
+      class="card">
+      <p class="data">Convite aceito • {{ indicado.data_cadastro_indicado  | date: 'dd/MM/yyyy'}}</p>
+      <p class="nome">{{ indicado.nome}}</p>
+      <p class="valor">{{ indicado.valor_indicador | currency : "BRL" }}</p>
+      <p class="status" *ngIf="indicado.beneficio_ativo === false">Aguardando primeira compra</p>
+      <p class="status" *ngIf="indicado.beneficio_ativo === true">Compra ja realizada</p>
+      <p class="status" *ngIf="indicado.beneficio_ativo === null">Cupom já resgatado</p>
+      <!--<a href="#" class="relembrar">Relembrar {{indicado.nome_Indicado}}</a>-->
+    </div>
+   <div class="alert" *ngIf="indicados.length === 0">
+      <p>Você ainda não tem amigos indicados,<span (click)="setActiveTab('indique')" class="cor"><strong> indique para ganhar benefícios!</strong></span></p>
+    </div>
+  </div>
+</ion-content>

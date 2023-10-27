@@ -1,0 +1,610 @@
+import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+import { AuthService } from '../services/auth.service';
+// import { AngularFireAuth } from '@angular/fire/auth';
+import { UIAlertService } from '../services/uialert.service';
+import { GlobalService } from '../services/global.service';
+import { ModalController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { RegisterComponent } from '../register/register.component';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import * as EmailValidator from 'email-validator';
+// import * as firebase from 'firebase';
+import * as firebase from 'firebase';
+
+=======
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { RegisterComponent } from '../register/register.component';
+import { UIAlertService } from '../services/uialert.service';
+import { GcomwebService } from '../services/gcomweb.service';
+import { ModalController, Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+import { GlobalService } from '../services/global.service';
+import { BrmallService } from '../services/brmall.service';
+import { ActivatedRoute } from '@angular/router';
+import { TermsAndPrivacyPolicyService } from '../services/terms-and-privacy-policy.service';
+import { HttpHeaders } from '@angular/common/http';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
+import { AuthService } from '../services/auth.service';
+>>>>>>> main
+
+declare function signup(provider, userId, email, nome, telefone) : any;
+
+@Component({
+  selector: 'app-login',
+  providers: [TermsAndPrivacyPolicyService],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+
+export class LoginPage implements OnInit {
+  public email;
+  public password;
+  public brandId;
+  public shoppingId;
+  public refreshInterval;
+  public facebookId;
+  public facebookName;
+  public facebookEmail;
+  public showPassword;
+  public loyaltyMode;
+  public loyaltyCompany;
+  public source;
+  public facebookLoginEnabled;
+  public google_id;
+
+  constructor(private uiAlertService: UIAlertService, 
+              private gcomwebService: GcomwebService, 
+              private storage: Storage,
+              private modalCtrl: ModalController,
+              private platform: Platform,
+              private global: GlobalService,
+              private brmallService : BrmallService,
+              private route : Router,
+              private activatedRoute : ActivatedRoute,
+              private termsService: TermsAndPrivacyPolicyService,
+              public fbauth: AngularFireAuth,
+              private authService: AuthService
+              ) {
+
+                platform.ready().then((readySource) => {
+                  this.screenWidth = platform.width();
+                });
+  
+                this.platform.resize.subscribe(async () => {
+                  this.screenWidth = platform.width();
+                });
+
+               }
+
+  public screenWidth;
+
+
+  async googleSignin() {
+    await this.authService.logout();
+
+    this.fbauth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider()).then(async r=>{
+
+<<<<<<< HEAD
+  public emailSuggestionsList: string[];
+
+  public set tempEmail(value: string) {
+    this._tempEmail = value;
+    this.emailValidation = "";
+=======
+      var tempToken = await r.user.getIdToken();
+      await this.authService.authenticate(tempToken);
+
+      const user = await this.authService.getUserInfo(true)
+      
+      if(user){
+        await this.storage.set('user' + this.global.storageId(), user);
+        this.uiAlertService.presentToast('Bem vindo ' + user.nome_completo, 3000,'primary');
+        this.route.navigate(['tabs/cardapioapp']);
+      }
+    });
+>>>>>>> main
+  }
+
+  async appleSignin() {
+    await this.authService.logout();
+
+    const provider = new firebase.default.auth.OAuthProvider('apple.com');
+    provider.addScope('email');
+    provider.addScope('name');
+
+    this.fbauth.signInWithPopup(new firebase.default.auth.OAuthProvider('apple.com')).then(async r=>{
+
+      var tempToken = await r.user.getIdToken();
+      await this.authService.authenticate(tempToken);
+
+      const user = await this.authService.getUserInfo(true);
+
+      if(user){
+        this.storage.set('user' + this.global.storageId(), user).then(() =>{
+        });
+        this.uiAlertService.presentToast('Bem vindo ' + user.nome_completo, 3000,'primary');
+        this.route.navigate(['tabs/cardapioapp']);
+      }
+    });
+    
+  }
+
+
+  async presentModalNewRegister() {
+
+    const modal = await this.modalCtrl.create({
+      component: RegisterComponent,
+      cssClass: (this.screenWidth >= 1024 ? 'new-register-modal-css' : '')
+    });
+
+<<<<<<< HEAD
+  constructor(
+    private uiAlertService: UIAlertService,
+    private storage: Storage,
+    private global: GlobalService,
+    private modalCtrl: ModalController,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { 
+
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.route.queryParams.subscribe(params => {
+      if(params["email"]){
+        this._tempEmail = params["email"]
+        this.requestPassOrRegister();
+      }
+    });
+  }
+
+  async googleSignin() {
+    const response = await firebase.default.auth().signInWithPopup(new firebase.default.auth.GoogleAuthProvider()).then(async r=>{
+
+      this.loadInProgress = true;
+      let userExistis = await this.authService.userExistis(r.user.email);
+      this.loadInProgress = false;
+  
+      if (userExistis == null) {
+        this.uiAlertService.presentAlert('Ops!', '', "Não conseguimos buscar os dados desse cadastro.", ['OK']);
+        return;
+      }
+  
+      if (!userExistis) {
+        let nameParts = r.user.displayName.split(' ');
+
+        this.registrationInProgress = true;
+        await this.openModalRegister(r.user.email, nameParts[0]||'', nameParts[1]||'', true);
+        this.registrationInProgress = false;
+      }
+    
+      await this.authService.logout();
+      this.authService.authenticate(await r.user.getIdToken()).then(u=>{
+        this.loadAndStoreUserInfo('google');
+      })
+    });
+  }
+
+  async appleSignin() {
+    const provider = new firebase.default.auth.OAuthProvider('apple.com');
+    provider.addScope('email');
+    provider.addScope('name');
+    
+    const response = await firebase.default.auth().signInWithPopup(provider).then(async r=>{
+      console.log(r);
+
+      return;
+      this.loadInProgress = true;
+      let userExistis = await this.authService.userExistis(r.user.email);
+      this.loadInProgress = false;
+  
+      if (userExistis == null) {
+        this.uiAlertService.presentAlert('Ops!', '', "Não conseguimos buscar os dados desse cadastro.", ['OK']);
+        return;
+      }
+  
+      if (!userExistis) {
+        let nameParts = r.user.displayName.split(' ');
+
+        this.registrationInProgress = true;
+        await this.openModalRegister(r.user.email, nameParts[0]||'', nameParts[1]||'', true);
+        this.registrationInProgress = false;
+      }
+      
+      await this.authService.logout();
+      await this.authService.authenticate(await r.user.getIdToken()).then(u=>{
+        this.loadAndStoreUserInfo('apple');
+      })  
+    });
+  }
+=======
+    await modal.present();
+
+    // hotjar('new-register');
+
+    const { data } = await modal.onWillDismiss();
+
+    if(data != null && data.return == "ok")
+    {
+      if(this.facebookId != null && this.facebookId != "" )
+      {
+        setTimeout(() => {
+          this.login(true);
+        }, 1000);        
+      }
+      else
+      {
+        setTimeout(() => {
+          this.email = data.email;
+          this.password = data.senha;
+
+          if (this.email != null && this.email != '' && this.password != null && this.password != '')
+            this.login(false);
+        }, 1000);        
+      }
+    }
+    else
+    {
+      this.startInterval();
+    }
+  }
+
+  async presentModalUpdageRegister(email) {
+
+    const modal = await this.modalCtrl.create({
+      component: RegisterComponent,
+      cssClass: (this.screenWidth >= 1024 ? 'new-register-modal-css' : ''),
+      componentProps: { email: email }
+    });
+
+    await modal.present();
+>>>>>>> main
+
+    const { data } = await modal.onWillDismiss();
+
+    if(data != null && data.return == "ok")
+    {
+      if(this.facebookId != null && this.facebookId != "" )
+      {
+        setTimeout(() => {
+          this.login(true);
+        }, 1000);        
+      }
+      else
+      {
+        setTimeout(() => {
+          this.email = data.email;
+          this.password = data.senha;
+
+          if (this.email != null && this.email != '' && this.password != null && this.password != '')
+            this.login(false);
+        }, 1000);        
+      }
+    }
+    else
+    {
+      this.startInterval();
+    }
+  }
+
+  async presentModalForgotPassword() {
+    const modal = await this.modalCtrl.create({
+      component: ForgotPasswordComponent,
+      cssClass: (this.screenWidth >= 1024 ? 'login-modal-css' : '')
+    });
+
+    await modal.present();
+
+    // hotjar('forgot-password');
+
+    const { data } = await modal.onWillDismiss();
+  }
+
+  startInterval()
+  {
+    clearInterval(this.refreshInterval);
+
+    this.facebookName = window["facebookName"] = "";
+    this.facebookEmail = window["facebookEmail"] = "";
+    this.facebookId = window["facebookId"] = "";
+
+    this.refreshInterval = setInterval(()=> {
+      this.verifyFacebookLogin(); 
+    }, 1000); 
+  }
+
+  ngOnInit() {   
+
+    this.startInterval();
+
+<<<<<<< HEAD
+    this.loadInProgress = true;
+    const userExistis = await this.authService.userExistis(this._tempEmail);
+    this.loadInProgress = false;
+
+    if (userExistis == null) {
+      this.uiAlertService.presentAlert('Ops!', '', "Não conseguimos buscar os dados desse cadastro.", ['OK']);
+      this.userExistis = userExistis;
+      return;
+    }
+
+    if(this.registrationInProgress){
+      this.userExistis = userExistis;
+      return;
+    } 
+      
+
+    if (!userExistis) {
+      this.registrationInProgress = true;
+      const data = await this.openModalRegister(this._tempEmail, '','', false);
+      this.registrationInProgress = false;
+
+      if (data.return == "ok") {
+        await this.authService.login(data.email, data.senha);
+  
+        if (!await this.authService.getToken()) {
+          this.uiAlertService.presentAlert('Ops!', '', "tivemos um probleminha. Faça login novamente!", ['OK']);
+          this.router.navigate(['tabs/login']);
+          return;
+        }
+        
+        await this.authService.getUserInfo(true);
+        this.router.navigate(['tabs/cardapioapp']);
+      }
+
+=======
+    window["facebookName"] = "";
+    window["facebookEmail"] = "";
+    window["facebookId"] = "";
+
+    this.brandId = this.global.getBrand();
+    this.shoppingId = this.global.id_shopping;
+    this.loyaltyMode = this.global.loyaltyMode;
+    this.loyaltyCompany = this.global.loyaltyCompany;
+    this.facebookLoginEnabled = this.global.facebookLogin;
+
+    this.source = this.activatedRoute.snapshot.queryParamMap.get("source");
+  }
+  
+  verifyFacebookLogin() {
+    this.facebookName = window["facebookName"];
+    this.facebookEmail = window["facebookEmail"];
+    this.facebookId = window["facebookId"];
+
+    if (this.facebookId != "")
+    {
+      this.login(true);
+
+      // clearInterval(this.refreshInterval);
+>>>>>>> main
+    }
+  }
+
+<<<<<<< HEAD
+    this.login_data.email = this._tempEmail;
+    this.userExistis = userExistis;
+
+    this.passwordIsRequested = userExistis;
+  }
+
+  async openModalRegister(email: string,firstname: string, lastname: string, login_social: boolean) {
+    const modal = await this.modalCtrl.create({
+      component: RegisterComponent,
+      componentProps: { emailInput: email, firstname, lastname, login_social }
+    });
+
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+
+    return data
+  }
+
+  async openModalForgotPassword() {
+    const modal = await this.modalCtrl.create({
+      component: ForgotPasswordComponent
+    });
+=======
+  ionViewDidEnter() {
+    // Or to get a key/value pair
+    // this.storage.get('user').then((val) => {
+    //   if(val != null)
+    //   {
+    //     if (this.gcomwebService.id_shopping == 0)
+    //         this.route.navigate(['/tabs']);
+    //     else
+    //         this.route.navigate(['/marketplace']);
+    //   }
+    // });
+  }
+
+  async login(facebook) {
+    
+    clearInterval(this.refreshInterval);
+
+      if (this.email == null || this.email == "")
+      {
+        this.uiAlertService.presentAlert('Ops!', '', 'Favor preencher o e-mail cadastrado para realizar o login.  ', null);
+        return;
+      }
+
+      if (this.password == null || this.password == "")
+      {
+        this.uiAlertService.presentAlert('Ops!', '', 'Favor preencher a senha cadastrada para realizar o login.  ', null);
+        return;
+      }
+     
+    await this.authService.login(this.email, this.password)
+
+    if(!await this.authService.getToken()){
+      this.uiAlertService.presentAlert('Ops!', '', "Email ou senha inválidos.", ['OK']);
+      return;
+    }
+>>>>>>> main
+
+    const user = await this.authService.getUserInfo(true);
+
+         if (user)
+         {
+                  this.email = "";
+                  this.password = "";
+        
+                  var nome = user.nome_completo.split(' ');
+                  this.uiAlertService.presentToast('Bem vindo ' + nome[0], 3000,'primary');
+        
+                  if(this.global.getBrand() == 93){
+                    this.route.navigate(['tabs/loyalty'])
+                  }
+                  else{
+                  if (this.global.id_shopping == 0)
+                    this.route.navigate(['tabs/cardapioapp']);
+                  else
+                    this.route.navigate(['tabs/marketplace']);
+                  }
+                  if (this.global.googleAnalytics == true)  
+                  {
+                    var celular = "";
+                    if (user.telefones.length > 0)
+                    {
+                      celular = String(user.telefones[0].ddd) + String(user.telefones[0].numero);
+                    }
+
+                    signup((facebook ? 'Facebook' : 'Gcom'), user.id_cliente, user.email1, user.nome_completo, celular);
+                  }
+          }
+          else{
+            this.uiAlertService.presentAlert('Ops!', '', "Tivemos um problema ao carregar seus dados.", ['OK']);
+          }
+          
+  }
+
+<<<<<<< HEAD
+  // useMyPassword(){
+  //   this.fastAccessCodeIsRequested = false; 
+  //   this.passwordIsRequested = true
+  // }
+
+  async emailEnter(ev){
+    if(!(ev.key == '@') && !this.tempEmail.includes('@') || ev.key == 'Enter'){
+      ev.target.setAttribute('list','');
+      return;
+    }
+    else
+      ev.target.setAttribute('list', 'suggestions');
+
+    const emailParts = this.tempEmail.split('@');
+
+    const email = emailParts[0];
+    let domain = emailParts[1] || null;
+
+    const emailDomains = ['gmail.com', 'hotmail.com', 'yahoo.com.br', 'outlook.com', 'icloud.com', 'bol.com.br', 'uol.com.br', 'live.com', 'terra.com.br', 'yahoo.com', 'ig.com.br']
+
+    this.emailSuggestionsList = emailDomains.filter(d=> domain == null || d.startsWith(domain)).map(d => email+'@'+d) || [];
+
+    if(ev.target.value == '' || this.emailSuggestionsList.some(e => e == ev.target.value)){
+      this.emailSuggestionsList = [];
+      ev.target.setAttribute('list','');
+    }
+  }
+
+  async fastAccessByEmailRequest() {
+    if (!this.login_data.email) return;
+
+    this.passwordIsRequested = false;
+    this.loadInProgress = true;
+    this.fastAccessCodeIsRequested = true;
+
+    try {
+      const success = await this.authService.requestFastAccessEmail(this.login_data.email);
+      if(!success){
+        this.uiAlertService.presentAlert('Ops!', '', "Tivemos um problema ao enviar o email de acesso rápido.", ['OK']);
+        return;
+      }
+      
+      this.uiAlertService.presentAlert('Sucesso', '', "Enviamos um email com o link de acesso rápido a sua conta.", ['OK']);
+      
+    } catch (err) {
+    }finally{
+      this.fastAccessCodeIsRequested = false;
+      this.passwordIsRequested = true;
+      this.loadInProgress = false;
+    }
+  }
+
+  // async fastAccessByEmailRequest() {
+  //   if (!this.login_data.email) return;
+
+  //   this.passwordIsRequested = false;
+  //   this.loadInProgress = true;
+
+  //   try {
+  //     const response = await this.authService.requestFastAccessCodeEmail(this.login_data.email);
+  //     if(!response){
+  //       this.fastAccessCodeIsRequested = false;
+  //       this.passwordIsRequested = true;
+  //       this.uiAlertService.presentAlert('Ops!', '', "Tivemos um problema ao solicitar o código de acesso rápido.", ['OK']);
+  //       return;
+  //     }
+      
+  //     this.fastAccessCodeIsRequested = true;
+      
+  //   } catch (err) {
+  //     this.fastAccessCodeIsRequested = false;
+  //     this.passwordIsRequested = true;
+  //   }finally{
+  //     this.loadInProgress = false;
+  //   }
+  // }
+  
+  async fastAccessSignin() {
+    this.loadInProgress = true;
+    await this.authService.loginByAccessCode(this.fastAccessCode);
+
+    if (!await this.authService.userIsLogged()) {
+      this.uiAlertService.presentAlert('Ops!', '', "Código de acesso inválido.", ['OK']);
+      this.loadInProgress = false;
+      return;
+=======
+  register() {
+    // this.dismiss('register');
+    this.presentModalNewRegister();
+  }
+
+  forgotPassword() {
+    this.presentModalForgotPassword();
+  }
+
+  dismiss(action)  {
+    this.modalCtrl.dismiss({
+      'return': action
+    });
+  }
+
+  passwordShowHide()
+  {
+    if (this.showPassword != true)
+    {
+      this.showPassword = true;
+    }
+    else
+    {
+      this.showPassword = false;
+    }
+  }
+
+  passwordKeypress(ev)
+  {
+    if (ev.charCode == 13){
+      this.login(false);
+>>>>>>> main
+    }
+  }
+
+  facebookNotEnabled() {
+    this.uiAlertService.presentAlert('Ops!', '', "O login com Facebook está indisponível no momento. Caso você já possua um cadastro conosco utilizando o Facebook, favor utilizar a opção 'Esqueci minha senha' e preencher seu e-mail do Facebook.", null);
+  }
+}

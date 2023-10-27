@@ -1,0 +1,72 @@
+<div class="container">
+  <img class="logo" src="https://www.gcom.com.br/ImagesAppGcom/logo-spoleto.png" *ngIf="brandId == 5" />
+
+  <div class="login-text">
+    <h1>Login</h1>
+    <p>{{ loginPhrase || "Informe seu e-mail para iniciar seu pedido." }}</p>
+  </div>
+
+  <div class="email">
+    <ion-label *ngIf="!login_data?.email" position="stacked">E-mail</ion-label>
+    <ion-input
+      type="email"
+      (keyup)="emailEnter($event)"
+      (keyup.enter)="requestPassOrRegister()"
+      #email
+      (ionFocus)="emailValidation = ''; login_data.email = null; passwordIsRequested = false"
+      (ionChange)="emailChange($event)"
+      [(ngModel)]="tempEmail"
+      [clearInput]="true"
+      [ngClass]="login_data.email ? 'show-clear-email' : ''"></ion-input>
+    <datalist id="suggestions" #suggestions>
+      <option *ngFor="let item of emailSuggestionsList" [value]="item">{{ item }}</option>
+    </datalist>
+    <ion-label>{{ emailValidation }}</ion-label>
+  </div>
+
+  <div *ngIf="loadInProgress" class="progress">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
+
+  <div *ngIf="passwordIsRequested && !loadInProgress" class="password">
+    <ion-label position="stacked">Senha</ion-label>
+    <ion-input (keyup.enter)="userExistis ? gcomSignin() : null" type="password" [(ngModel)]="login_data.password"></ion-input>
+  </div>
+
+  <div *ngIf="!loadInProgress" class="pass-recover-link">
+    <span class="recover-password gtm-forgot-password" (click)="openModalForgotPassword()">esqueci minha senha</span>
+  </div>
+
+  <ion-button *ngIf="!fastAccessCodeIsRequested" (click)="userExistis ? gcomSignin() : requestPassOrRegister()" class="btn-continue">Continuar</ion-button>
+
+  <div class="custom-divider">
+    <div class="line"></div>
+    <p class="text">{{ login_data.email ? "ou" : "ou utilize sua conta" }}</p>
+  </div>
+
+  <button *ngIf="!login_data.email && brandId == 5" (click)="googleSignin()" class="btn-google">
+    <ion-icon src="assets/google.svg"></ion-icon>
+    Google
+  </button>
+
+  <ion-button *ngIf="!login_data.email && brandId == 5" (click)="appleSignin()" class="btn-apple">
+    <ion-icon name="logo-apple" color="#000000"></ion-icon>
+    Apple
+  </ion-button>
+
+  <ion-button *ngIf="login_data.email" (click)="fastAccessByEmailRequest()" fill="outline" class="btn-fast-access-email">
+    <ion-icon name="lock-closed-outline"></ion-icon>
+    {{ "Acesso rápido por e-mail" }}
+  </ion-button>
+
+  <!-- <ion-button *ngIf="login_data.email" (click)="!fastAccessCodeIsRequested ? fastAccessByEmailRequest(): useMyPassword()" fill="outline" class="btn-fast-access-email">
+    <ion-icon name="lock-closed-outline"></ion-icon> {{ !fastAccessCodeIsRequested ? 'Acesso rápido por e-mail' : 'Usar minha senha' }}
+  </ion-button> -->
+
+  <!-- <div *ngIf="fastAccessCodeIsRequested" class="access-code">
+    <ion-label position="stacked">Código de acesso</ion-label>
+    <ion-input (keyup.enter)="fastAccessCode ? fastAccessSignin() : null" [(ngModel)]="fastAccessCode"></ion-input>
+  </div> -->
+
+  <!-- <ion-button *ngIf="fastAccessCodeIsRequested && fastAccessCode" (click)="fastAccessSignin()" class="btn-continue">Continuar</ion-button> -->
+</div>

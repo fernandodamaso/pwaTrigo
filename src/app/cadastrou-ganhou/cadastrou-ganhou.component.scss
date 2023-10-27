@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
+
+:host {
+  background: #FDB913 url('../../assets/cadastrou-ganhou/bg.png') no-repeat;
+  background-size: cover;
+}
+
+p,
+h2 {
+  color: #341F10;
+  font-family: 'Source Sans Pro';
+}
+
+.fechar {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  ion-icon {
+    background: #341f10;
+    color: #fff;
+    border-radius: 5px;
+  }
+}
+
+.no-ripple {
+  --background-hover: transparent;
+  --ripple-color: transparent;
+  --hover-ripple-color: transparent;
+}
+
+
+
+.layout {
+  text-align: center;
+
+  .bravo {
+    margin-bottom: 0px;
+    margin-top: 55px;
+  }
+
+  .textoWrap {
+    max-width: 350px;
+    margin: auto;
+
+    h2 {
+      font-size: 30px;
+      line-height: 36px;
+      font-weight: 900;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 23px;
+      text-align: center;
+
+      img {
+        position: relative;
+        top: 0;
+      }
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
+    .continue {
+      height: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
+      --inner-padding: 50px;
+      font-family: 'Source Sans Pro';
+      text-transform: initial;
+      font-size: 16px;
+    }
+  }
+
+  .mio {
+    margin-bottom: 30px;
+    margin-top: 60px;
+  }
+}
